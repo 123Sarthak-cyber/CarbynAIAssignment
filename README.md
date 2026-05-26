@@ -9,7 +9,7 @@ Built as part of the Carbyn AI Take-Home Assignment.
 # Live Demo
 
 🚀 Deployed Application:  
-https://ais-dev-qfalblzlfewv4qzf5yhib3-289528735090.asia-east1.run.app/
+https://ais-dev-etkr7g5a5q4dyvqathchyk-289528735090.asia-east1.run.app/
 
 ---
 
