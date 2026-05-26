@@ -1,0 +1,11 @@
+{
+  "name": "Carbyn AI Assistant",
+  "description": "AI-powered real-time assistant for hands-free factory and field service technicians inspecting or repairing machines.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

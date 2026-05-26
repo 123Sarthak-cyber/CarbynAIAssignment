@@ -1,0 +1,163 @@
+import { EquipmentManual } from "../types";
+
+export const EQUIPMENT_MANUALS: EquipmentManual[] = [
+  {
+    id: "hvac_xr900",
+    name: "Industrial Chiller System",
+    model: "Chiller XR-900",
+    category: "HVAC",
+    specs: {
+      "Cooling Capacity": "450 Tons / 1580 kW",
+      "Refrigerant Type": "R-134a (High Density)",
+      "Optimal Discharge Pressure": "115 psi to 135 psi",
+      "Low Pressure Limit": "40 psi",
+      "Normal Temperature Range": "44°F to 54°F (Evaporator Outlet)",
+      "Maximum Rated Current": "180 Amps",
+    },
+    commonFaults: [
+      "Low Pressure Alarm (Error Code E-04)",
+      "Compressor Motor Overheating (Fault E-12)",
+      "Cooling Fluid Flow Rate Deficit (Code E-18)",
+    ],
+    imageUrl: "/assets/chiller_xr900.webp",
+    sops: [
+      {
+        id: "hvac_sop_low_pressure",
+        title: "SOP-HVAC-04: Resolving Low Pressure Lockout (E-04)",
+        symptoms: [
+          "Discharge pressure drops below 55 psi",
+          "Frost buildup near expansion valve inlet",
+          "Evaporator temperature reading below normal range",
+        ],
+        safetyFirst: "Ensure you are sporting Class-0 rubber insulated safety gloves, ear protection, and safety glasses. Reclaiming or handling high-density refrigerant lines requires a licensed technician certification.",
+        steps: [
+          "Locate the low-pressure service valve on the suction line of the cooling loops.",
+          "Inspect refrigerant level gauge. Verify if pressure is below the hard threshold of 55 psi.",
+          "Check the evaporator fluid flow sensor, confirming that the secondary circulation valve is fully in the OPEN position.",
+          "Search for physical oil stains or minor line sweating that would suggest a coolant leak under the copper pipe fittings.",
+          "Conduct a leak test on the expansion valve connections with a soap bubble fluid or an electronic halogen device.",
+          "If no leaks are present, manually adjust the thermostatic expansion valve (TXV) by turning the stem clockwise by half a turn.",
+          "Clear the system alarm panel error log by holding the manual reset button for 3 seconds before rebooting.",
+        ],
+      },
+      {
+        id: "hvac_sop_overheating",
+        title: "SOP-HVAC-12: Compressor Motor Recovery",
+        symptoms: [
+          "Compressor housing exceeds 185°F",
+          "Thermal limit switch trigger lock",
+          "Faint humming with no movement",
+        ],
+        safetyFirst: "DO NOT TOUCH the casing directly; high thermal hazards exist. Cut off main breaker #4 on sub-panel A and verify zero electrical potential with a calibrated voltmeter before touching internal wires.",
+        steps: [
+          "Isolate electrical line powering the compressor by toggling main breaker #4 off.",
+          "Attach lock-out tag-out (LOTO) tags to prevent unauthorized re-energization.",
+          "Unscrew the compressor housing access cover using a metric 10mm driver.",
+          "Verify the physical motor cooling fan is free from dust or particulate buildup. Rotate fan blades manually to check bearing resistance.",
+          "Measure electrical resistance across the motor run capacitor terminals with a digital multimeter. Expected capacitance: 45 µF.",
+          "Inspect fan belt tension. If slack exceeds 0.5 inches under thumb pressure, loosen tensioner bracket, adjust belt, and lock down bolts.",
+          "Re-secure access panels, retract lockout tags, flip the main breaker, and test current draw under normal startup loop.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "pump_wp250",
+    name: "Centrifugal Water Pump",
+    model: "WP-250 High-Volume",
+    category: "Pumping",
+    specs: {
+      "Flow Capacity": "250 GPM (Gallons Per Minute)",
+      "Suction Size": "3-Inch Flanged",
+      "Maximum RPM": "3450 RPM",
+      "Impeller Diameter": "6.5 Inches",
+      "Motor Rating": "15 HP / Three-Phase",
+      "Maximum Pressure Rating": "150 psi",
+    },
+    commonFaults: [
+      "Cavitation/Crackling Noise (Air Pockets)",
+      "Zero/Negligible Displacement or Flow",
+      "Mechanical Shaft Seal Sweating",
+    ],
+    imageUrl: "/assets/pump_wp250.webp",
+    sops: [
+      {
+        id: "pump_sop_cavitation",
+        title: "SOP-PUMP-01: Correcting Suction Cavitation (Noisy Loop)",
+        symptoms: [
+          "Rattling or marbles in a can noise inside pump casing",
+          "Fluctuating pressure reading near discharge line",
+          "Minor vibrating displacement on supporting concrete pads",
+        ],
+        safetyFirst: "High kinetic kinetic velocity! Tie back any loose hair/clothing. Keep limbs clear of rotating shaft coupler guards. Wear heavy leather safety gloves and high-impact barrier safety goggles.",
+        steps: [
+          "Check the input suction-side vacuum pressure gauge. A deep vacuum (below -10 psi) indicates clogged inlet pipelines.",
+          "Manually clear the suction basket filter debris basket. Clean with high-pressure air nozzle of any scale or organic slurry.",
+          "Slowly inspect the suction-side isolation gate valve; verify that it is locked fully in the OPEN position.",
+          "Examine if the pipeline contains high horizontal loops that promote gas trapping. Adjust discharge valve to throttle high demand.",
+          "Add minor positive head pressure or increase water supply inlet pool levels to raise Net Positive Suction Head (NPSH).",
+          "Ensure the shaft coupling bolts are tightened with a torque driver to 22 ft-lbs to resolve vibrating alignments.",
+        ],
+      },
+      {
+        id: "pump_sop_seal_maintenance",
+        title: "SOP-PUMP-03: Shaft Seal Packing Restoration",
+        symptoms: [
+          "Continuous dripping leak exceed 60 drops per minute from gland",
+          "Packing sleeve runs hot to touch (above 140°F)",
+        ],
+        safetyFirst: "Isolate high fluid system pressure! Shut both inlet and outlet gate valves. Decompress the core pump body by cracking open the drain plug safely and directing effluents to standard floor drainage.",
+        steps: [
+          "Unscrew and slide back the gland plate bolts to expose the pump stuffing box.",
+          "Extract the dried compression rings with a packing puller tool hook.",
+          "Inspect shaft sleeve for grooves. If worn deeper than 1/16th in, tag unit for professional shop machining.",
+          "Cut new graphite packing rings exactly matching shaft diameter, staggering joints at 90-degree offsets.",
+          "Tamp each packing ring firmly into housing, lightly lubricating with grease.",
+          "Re-seat gland plate and finger-tighten the supporting hex bolts.",
+          "Re-prime pump body, restart unit, and tighten hex bolts 1/6th of a turn at a time until minor, functional lubrication leak of 5-10 drops per minute is settled.",
+        ],
+      },
+    ],
+  },
+  {
+    id: "panel_ep400",
+    name: "Three-Phase Distribution Panel",
+    model: "EP-400 High-Capacity",
+    category: "Electrical",
+    specs: {
+      "Input Voltage": "480V AC / Three-Phase",
+      "Rated Amperage": "400 Amps",
+      "Frequency Support": "50 Hz / 60 Hz",
+      "Busbar Material": "Solid Electrolytic Copper",
+      "Interrupt Rating": "65 kA AIC",
+      "Enclosure Class": "NEMA 12 / Dust-Tight",
+    },
+    commonFaults: [
+      "Tripped Main Molded Case Breaker (MCCB)",
+      "Unbalanced Phase Resistance or Voltage Load",
+      "Terminals Running Thermally High (Arc Risk)",
+    ],
+    imageUrl: "/assets/panel_ep400.webp",
+    sops: [
+      {
+        id: "panel_sop_tripped_mccb",
+        title: "SOP-ELEC-01: Assessing Molded Case Breaker Trip",
+        symptoms: [
+          "Main breaker switch is stuck in the intermediate AMBER/CENTER position",
+          "Total downstream voltage loss reported in Sector B machines",
+          "Hot electrical/varnish smell when opening NEMA doors",
+        ],
+        safetyFirst: "EXTREME LETHAL VOLTAGE HAZARD (480V). Stand to the side of the panel door, do not stand directly in front when switching breakers to limit blast corridor exposure. Keep NFPA 70E Arc Flash helmet and flame-resistant coveralls donned at all times.",
+        steps: [
+          "Toggle off downstream branch circuit loads to minimize high in-rush loads on main reactivation.",
+          "Examine core wiring inside and outside connection paths for copper charcoal scorching or arc scarring.",
+          "With an certified isolation tester or insulation multimeter (500V DC test limit), test resistance to ground across all three secondary phases. Verify resistance exceeds 2 Mega-ohms.",
+          "If insulation readings are positive and no ground fault is confirmed, inspect main cable terminations. Re-torque hex lugs to 150 inch-pounds.",
+          "To reset the central toggle, force the breaker switch hard into the off (fully LEFT/DOWN) position to engage the trip springs.",
+          "With your left hand, standing fully to the right side of the cabinet door to protect your face, throw the MCCB toggle quickly into the ON position.",
+          "Power on downstream branch circuits one-by-one while tracking active current draw utilizing a calibrated clamp-on ammeter on each main phase line.",
+        ],
+      },
+    ],
+  },
+];
